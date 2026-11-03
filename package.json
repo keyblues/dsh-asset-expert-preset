@@ -1,0 +1,41 @@
+{
+  "name": "dsh-asset-expert-preset",
+  "version": "1.0.0",
+  "description": "DSH agent preset: 资产专家 — 企业互联网资产与关联图谱（ICP备案 / FOFA测绘 / 域名资产面 / 企业关联 / xlsx 台账交付）。以 PTC 模式预设为底座。 | DSH agent preset for enterprise internet asset discovery and relationship mapping: ICP filings, FOFA cyberspace mapping, domain asset surface expansion, company-relationship pivoting, liveness probing and xlsx ledger delivery, built on the PTC-mode preset.",
+  "license": "MIT",
+  "author": "keyblues",
+  "type": "module",
+  "keywords": [
+    "dsh",
+    "dsh-preset",
+    "deepseek-harness",
+    "agent-preset",
+    "asset-discovery",
+    "attack-surface",
+    "cyberspace-mapping",
+    "fofa",
+    "icp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keyblues/dsh-asset-expert-preset.git"
+  },
+  "homepage": "https://github.com/keyblues/dsh-asset-expert-preset#readme",
+  "bugs": {
+    "url": "https://github.com/keyblues/dsh-asset-expert-preset/issues"
+  },
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.1-rc.5 <0.3.0-0"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
