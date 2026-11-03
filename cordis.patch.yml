@@ -6,7 +6,7 @@
 #   - 插件清单与 preset-ptc 逐行对齐，仅三处有意偏离（persona / workflow 引擎 /
 #     skill 根），均已注明理由。
 # 差异化在 persona（资产方法论 + PTC 执行纪律），不改动任何 Host 级插件：
-#   FOFA(dsh-fofatoto)、风鸟企业(@local/fengniao-company-search)、ICP(@local/icp-mcp)、
+#   FOFA(dsh-fofatoto)、风鸟企业(dsh-fengniao-company-search)、ICP(@local/icp-mcp)、
 #   Everything(dsh-plugin-everything) 都是 profile 级 bundle，其工具对全部 preset 可见，
 #   因此这里不重复挂载 MCP/工具行。
 #

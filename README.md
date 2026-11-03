@@ -6,7 +6,7 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D20-339933?style=flat-square)](package.json)
 [![DSH](https://img.shields.io/badge/DSH-0.2.1--rc.5%2B-4D6BFE?style=flat-square)](#前置依赖)
 
-> **English** — A DSH (DeepSeek Harness) agent preset that takes the built-in PTC-mode preset as its base and swaps in an "Asset Expert" (资产专家) role: enterprise internet asset discovery and relationship mapping — ICP filing lookups, FOFA cyberspace mapping, domain / asset-surface expansion, company-relationship pivoting, liveness probing, and xlsx ledger delivery. Pure declarative bundle (`package.json` + `cordis.patch.yml`), no custom host or client code. It relies on profile-level data-source bundles (`dsh-fofatoto`, `@local/icp-mcp`, `@local/fengniao-company-search`, `dsh-plugin-everything`) and on an external `asset-collection` skill pack that is **not** included in this repository — point `skill-filesystem.config.customSkillDirs` at your own copy.
+> **English** — A DSH (DeepSeek Harness) agent preset that takes the built-in PTC-mode preset as its base and swaps in an "Asset Expert" (资产专家) role: enterprise internet asset discovery and relationship mapping — ICP filing lookups, FOFA cyberspace mapping, domain / asset-surface expansion, company-relationship pivoting, liveness probing, and xlsx ledger delivery. Pure declarative bundle (`package.json` + `cordis.patch.yml`), no custom host or client code. It relies on profile-level data-source bundles (`dsh-fofatoto`, `@local/icp-mcp`, `dsh-fengniao-company-search`, `dsh-plugin-everything`) and on an external `asset-collection` skill pack that is **not** included in this repository — point `skill-filesystem.config.customSkillDirs` at your own copy.
 
 一个 DSH Agent preset bundle：把 **PTC 模式预设**做底座，换成"企业互联网资产 + 企业关联"的角色。
 
@@ -27,7 +27,7 @@
 | --- | --- | --- |
 | 空间测绘 | `dsh-fofatoto` | `fofa_account` / `fofa_search` / `fofa_export` |
 | ICP 备案 | `@local/icp-mcp`（MCP） | `mcp__icp__icp_query` / `mcp__icp__icp_query_types` |
-| 企业关联 | `@local/fengniao-company-search` | `fengniao_search_company` / `fengniao_company_dimension` |
+| 企业关联 | `dsh-fengniao-company-search` | `fengniao_search_company` / `fengniao_company_dimension` |
 | 全盘检索 | `dsh-plugin-everything` | `everything_search` / `everything_status` |
 
 另一个**必须自备**的依赖是外部技能包 `asset-collection`（含 `SKILL.md`、`lessons.md`、`references/`、`scripts/`）。它**不在本仓库**里：本 preset 只是通过 `skill-filesystem.config.customSkillDirs` 指向作者本机上的路径——
@@ -87,7 +87,7 @@ plugin_manager install_bundle  target: <本目录绝对路径>
 | --- | --- | --- |
 | 空间测绘 | `dsh-fofatoto` | `fofa_account` / `fofa_search` / `fofa_export` |
 | ICP 备案 | `@local/icp-mcp`（MCP） | `mcp__icp__icp_query` / `mcp__icp__icp_query_types` |
-| 企业关联 | `@local/fengniao-company-search` | `fengniao_search_company` / `fengniao_company_dimension` |
+| 企业关联 | `dsh-fengniao-company-search` | `fengniao_search_company` / `fengniao_company_dimension` |
 | 全盘检索 | `dsh-plugin-everything` | `everything_search` / `everything_status` |
 
 方法论与脚本来自用户级 skill 包 `C:\Users\keyblue\.agents\skill-packs\asset\asset-collection\`（SKILL.md + lessons.md + references/ + scripts/）。它**不在**默认技能根里，只由本 preset 的 `skill-filesystem.config.customSkillDirs` 挂载，因此其他 agent 看不到它；persona 强制"开工先加载"。
@@ -204,7 +204,7 @@ config:
 
 本 preset 目前**没有**自带数据源插件：FOFA / 风鸟 / ICP / Everything 是 profile 级 bundle，所有 agent 都能看到。要收窄有两条路：
 
-1. **搬进 preset**：把对应 bundle 从 `dsh.profile.bundles` 移除，把插件行写进本 preset（`name: 'dsh-fofatoto'` / `@local/fengniao-company-search` / `@local/icp-mcp` + `@deepseek-ai/dsh-mcp-client`）。注意 MCP `serverName` 必须唯一，同一个插件不要同时在 Host 和 preset 挂载。
+1. **搬进 preset**：把对应 bundle 从 `dsh.profile.bundles` 移除，把插件行写进本 preset（`name: 'dsh-fofatoto'` / `dsh-fengniao-company-search` / `@local/icp-mcp` + `@deepseek-ai/dsh-mcp-client`）。注意 MCP `serverName` 必须唯一，同一个插件不要同时在 Host 和 preset 挂载。
 2. **保留全局 + 掩码**（插件必须共享时）：preset 里挂一个小插件：
 
 ```js
